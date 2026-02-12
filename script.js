@@ -9,18 +9,26 @@ let isPlaying = false;
 
 const backdrop = document.querySelector(".backdrop");
 
+let unlocked = false;
+
 backdrop.addEventListener("click", () => {
-  backdrop.classList.add("hide");
+  audio.volume = 0.01; // silent start
+  audio.play().then(() => {
+    unlocked = true;
+    backdrop.classList.add("hide");
+    console.log("Audio unlocked");
+  }).catch(err => console.log(err));
 });
 
 // Set page height
 const totalHeight = container.scrollHeight;
 // document.body.style.height = totalHeight + "px";
 
-// iOS audio unlock
-container.addEventListener("touchstart", () => {
-  audio.play().then(() => audio.pause()).catch(() => {});
-}, { once: true });
+// // iOS audio unlock
+// container.addEventListener("touchstart", () => {
+//   audio.play().then(() => audio.pause()).catch(() => {});
+// }, { once: true });
+
 
 // Capture scroll
 container.addEventListener("scroll", () => {
@@ -44,21 +52,39 @@ function animate() {
 
 animate();
 
+
+// function controlReel(speed) {
+//   if (speed > 0.2) {
+//     if (!isPlaying) {
+//       // Do NOT reset currentTime
+//       audio.play().catch(() => {});
+//       isPlaying = true;
+//     }
+
+//     // Adjust playback rate and volume based on scroll speed
+//     audio.playbackRate = clamp(speed * 0.04, 0.8, 2.2);
+//     audio.volume = clamp(speed * 0.03, 0.3, 1);
+//   } else if (isPlaying) {
+//     slowStop();
+//   }
+// }
+
 function controlReel(speed) {
+  if (!unlocked) return;
+
   if (speed > 0.2) {
     if (!isPlaying) {
-      // Do NOT reset currentTime
       audio.play().catch(() => {});
       isPlaying = true;
     }
 
-    // Adjust playback rate and volume based on scroll speed
     audio.playbackRate = clamp(speed * 0.04, 0.8, 2.2);
     audio.volume = clamp(speed * 0.03, 0.3, 1);
   } else if (isPlaying) {
     slowStop();
   }
 }
+
 
 function slowStop() {
   let rate = audio.playbackRate;

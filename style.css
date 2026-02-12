@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+audio {
+  display: none;
+}
 
 body {
   margin: 0;
