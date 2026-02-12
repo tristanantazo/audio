@@ -72,16 +72,22 @@ animate();
 function controlReel(speed) {
   if (!unlocked) return;
 
-  if (speed > 0.2) {
-    if (!isPlaying) {
-      audio.play().catch(() => {});
-      isPlaying = true;
-    }
+  if (!isPlaying) {
+    audio.loop = true;
+    audio.play().catch(() => {});
+    isPlaying = true;
+  }
 
+  if (speed > 0.2) {
     audio.playbackRate = clamp(speed * 0.04, 0.8, 2.2);
     audio.volume = clamp(speed * 0.03, 0.3, 1);
-  } else if (isPlaying) {
-    slowStop();
+  } else {
+    // Instead of pause → just fade volume
+    audio.volume *= 0.5;
+
+    if (audio.volume < 0.05) {
+      audio.volume = 0.05;
+    }
   }
 }
 
