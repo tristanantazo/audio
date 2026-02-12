@@ -7,6 +7,12 @@ let lastTarget = 0;
 let velocity = 0;
 let isPlaying = false;
 
+const backdrop = document.querySelector(".backdrop");
+
+backdrop.addEventListener("click", () => {
+  backdrop.classList.add("hide");
+});
+
 // Set page height
 const totalHeight = container.scrollHeight;
 // document.body.style.height = totalHeight + "px";

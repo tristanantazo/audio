@@ -5,11 +5,46 @@
 body {
   margin: 0;
   height: 100vh;
-  background: #0b0b0b;
+  background: #7446a4;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: system-ui, sans-serif;
+}
+
+/* Hidden state */
+.backdrop.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.clickme {
+  padding: 12px 24px;
+  font-size: 16px;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Backdrop */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(0, 0, 0); /* dim effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+}
+
+.instruction {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 20px;
+  width: 320px;
 }
 
 /* Center container */
@@ -54,10 +89,18 @@ body {
   bottom: 0;
   left: 0;
   right: 0; */
+  height: 100vh;              /* same height as one image */
+  display: flex;
+  align-items: center;        /* vertical center */
+  justify-content: center;    /* horizontal center */
+  font-size: 28px;
+  font-weight: bold;
+
   padding: 16px;
   text-align: center;
   font-size: 18px;
   color: white;
+  height: 100%;
   background: linear-gradient(
     to top,
     rgba(0,0,0,0.8),
