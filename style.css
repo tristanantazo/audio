@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #0b0b0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+}
+
+/* Center container */
+.center-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card */
+.image-card {
+  width: 320px;
+  height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+/* Scrollable image area */
+.image-scroll {
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar (optional) */
+.image-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Images */
+.image-scroll img {
+  width: 100%;
+  display: block;
+}
+
+/* Bottom text overlay */
+.caption {
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0)
+  );
+  pointer-events: none;
+}
